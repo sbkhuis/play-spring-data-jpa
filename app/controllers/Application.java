@@ -1,12 +1,14 @@
 package controllers;
 
-import models.Person;
-import models.PersonRepository;
-import play.mvc.*;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+
+import models.Person;
+import models.PersonRepository;
+import models.QPerson;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 /**
  * The main set of web services.
@@ -16,7 +18,7 @@ import javax.inject.Singleton;
 public class Application extends Controller {
 
     private final PersonRepository personRepository;
-
+    
     // We are using constructor injection to receive a repository to support our desire for immutability.
     @Inject
     public Application(final PersonRepository personRepository) {
@@ -37,9 +39,10 @@ public class Application extends Controller {
         final Person savedPerson = personRepository.save(person);
 
         final Person retrievedPerson = personRepository.findOne(savedPerson.id);
-
+        
+        Person Bruce = personRepository.findOne(QPerson.person.firstname.eq("Bruce"));
         // Deliver the index page with a message showing the id that was generated.
 
-        return ok(views.html.index.render("Found id: " + retrievedPerson.id + " of person/people"));
+        return ok(views.html.index.render("Found id: " + Bruce.id + " of person/people"));
     }
 }

@@ -1,14 +1,15 @@
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate3.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
+
 import play.Application;
 import play.GlobalSettings;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * Application wide behaviour. We establish a Spring application context for the dependency injection system and
@@ -63,7 +64,7 @@ public class Global extends GlobalSettings {
     public <A> A getControllerInstance(Class<A> aClass) {
         return ctx.getBean(aClass);
     }
-
+    
     /**
      * This configuration establishes Spring Data concerns including those of JPA.
      */

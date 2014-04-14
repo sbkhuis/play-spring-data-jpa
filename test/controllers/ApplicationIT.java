@@ -2,15 +2,16 @@ package controllers;
 
 import models.Person;
 import models.PersonRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import play.GlobalSettings;
 import play.mvc.Result;
 import play.test.WithApplication;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static play.test.Helpers.*;
@@ -35,7 +36,8 @@ public class ApplicationIT extends WithApplication {
         app = new Application(repo);
 
         final GlobalSettings global = new GlobalSettings() {
-            @Override
+            @SuppressWarnings("unchecked")
+			@Override
             public <A> A getControllerInstance(Class<A> aClass) {
                 return (A) app;
             }
