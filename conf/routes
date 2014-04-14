@@ -4,7 +4,13 @@
 
 # Home page - we use the @controllers syntax here so that the router knows we are referring to a class. In turn it
 # will call on the GlobalSettings.getController method to resolve the actual controller instance.
-GET     /                           @controllers.Application.index
+GET     /                           @controllers.Application.index()
+GET		/customer					@controllers.Application.customer()
+GET		/c/index					@controllers.Application.customerIndex()
+GET		/create						@controllers.Application.create()
+GET		/read/:id					@controllers.Application.read(id: Long)
+GET		/delete/:id					@controllers.Application.delete(id: Long)
+GET		/update/:id					@controllers.Application.update(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

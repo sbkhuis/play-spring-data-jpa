@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CustomerRepository;
 import models.Person;
 import models.PersonRepository;
 
@@ -30,10 +31,13 @@ public class ApplicationIT extends WithApplication {
 
     @Mock
     private PersonRepository repo;
+    
+    @Mock
+    private CustomerRepository repo2;
 
     @Before
     public void setUp() throws Exception {
-        app = new Application(repo);
+        app = new Application(repo, repo2);
 
         final GlobalSettings global = new GlobalSettings() {
             @SuppressWarnings("unchecked")
